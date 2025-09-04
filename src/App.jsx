@@ -40,59 +40,74 @@ function App() {
       try {
         // Load jQuery first
         await loadScript('/assets/js/jquery.js');
-        
-        // Load other scripts
+
+        // Load GSAP core, then plugins in sequence to guarantee availability
+        await loadScript('/assets/js/gsap.min.js');
+        await loadScript('/assets/js/ScrollTrigger.min.js');
+        await loadScript('/assets/js/ScrollToPlugin.min.js');
+        await loadScript('/assets/js/motionpath.min.js');
+
+        // Register plugins if available (needed for home.js usage)
+        if (window.gsap && window.ScrollTrigger) {
+          window.gsap.registerPlugin(window.ScrollTrigger);
+        }
+
+        // Load the rest that don't require strict ordering
         await Promise.all([
           loadScript('/assets/js/bootstrap.bundle.min.js'),
           loadScript('/assets/js/tilt.min.js'),
           loadScript('/assets/js/spotlight_effect.js'),
-          loadScript('/assets/js/gsap.min.js'),
-          loadScript('/assets/js/ScrollTrigger.min.js'),
-          loadScript('/assets/js/ScrollToPlugin.min.js'),
-          loadScript('/assets/js/motionpath.min.js'),
           loadScript('/assets/js/lottie.min.js'),
           loadScript('/assets/js/owl.carousel.min.js'),
-          loadScript('/assets/js/home.js'),
-          loadScript('https://unpkg.com/@rive-app/webgl2@latest')
         ]);
 
-        // Initialize Rive animations
+        // Load Rive runtime
+        await loadScript('https://unpkg.com/@rive-app/webgl2@latest');
+
+        // Only initialize Rive if target canvases exist
         if (window.rive) {
-          const payroll_riv = new window.rive.Rive({
-            src: "/assets/riv/payroll.riv",
-            canvas: document.getElementById("payroll"),
-            autoplay: true,
-            artboard: "Payroll opt 1",
-            stateMachines: "Payroll",
-            useOffscreenRenderer: true,
-            onLoad: () => {
-              payroll_riv.resizeDrawingSurfaceToCanvas();
-            },
-          });
+          const payrollCanvas = document.getElementById('payroll');
+          const payoutCanvas = document.getElementById('payout');
+          const expCanvas = document.getElementById('exp-anim');
 
-          const payout_riv = new window.rive.Rive({
-            src: "/assets/riv/payout.riv",
-            canvas: document.getElementById("payout"),
-            autoplay: true,
-            artboard: "Payout opt 1",
-            stateMachines: "Payout",
-            useOffscreenRenderer: true,
-            onLoad: () => {
-              payout_riv.resizeDrawingSurfaceToCanvas();
-            },
-          });
+          if (payrollCanvas) {
+            const payroll_riv = new window.rive.Rive({
+              src: '/assets/riv/payroll.riv',
+              canvas: payrollCanvas,
+              autoplay: true,
+              artboard: 'Payroll opt 1',
+              stateMachines: 'Payroll',
+              useOffscreenRenderer: true,
+              onLoad: () => payroll_riv.resizeDrawingSurfaceToCanvas(),
+            });
+          }
 
-          const exp_img = new window.rive.Rive({
-            src: "/assets/riv/Four.riv",
-            canvas: document.getElementById("exp-anim"),
-            autoplay: true,
-            stateMachines: "Four",
-            useOffscreenRenderer: true,
-            onLoad: () => {
-              exp_img.resizeDrawingSurfaceToCanvas();
-            },
-          });
+          if (payoutCanvas) {
+            const payout_riv = new window.rive.Rive({
+              src: '/assets/riv/payout.riv',
+              canvas: payoutCanvas,
+              autoplay: true,
+              artboard: 'Payout opt 1',
+              stateMachines: 'Payout',
+              useOffscreenRenderer: true,
+              onLoad: () => payout_riv.resizeDrawingSurfaceToCanvas(),
+            });
+          }
+
+          if (expCanvas) {
+            const exp_img = new window.rive.Rive({
+              src: '/assets/riv/Four.riv',
+              canvas: expCanvas,
+              autoplay: true,
+              stateMachines: 'Four',
+              useOffscreenRenderer: true,
+              onLoad: () => exp_img.resizeDrawingSurfaceToCanvas(),
+            });
+          }
         }
+
+        // Finally load site behaviors that expect GSAP + plugins to be ready
+        await loadScript('/assets/js/home.js');
       } catch (error) {
         console.error('Error loading scripts:', error);
       }
