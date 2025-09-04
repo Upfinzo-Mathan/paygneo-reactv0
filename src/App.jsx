@@ -61,7 +61,6 @@ function App() {
           const plugins = [];
           if (window.ScrollTrigger) plugins.push(window.ScrollTrigger);
           if (window.ScrollToPlugin) plugins.push(window.ScrollToPlugin);
-          // MotionPath plugin global can be MotionPathPlugin or MotionPathHelper depending on file
           if (window.MotionPathPlugin) plugins.push(window.MotionPathPlugin);
           try {
             if (plugins.length) {
@@ -82,8 +81,32 @@ function App() {
           loadScript('https://unpkg.com/@rive-app/webgl2@latest')
         ]);
 
-        // 4) Load site animation logic LAST so it sees registered plugins
-        await loadScript('/assets/js/home.js');
+        // 4) Ensure full window load to guarantee all assets, fonts and React DOM are ready
+        await new Promise((resolve) => {
+          if (document.readyState === 'complete') {
+            resolve();
+          } else {
+            window.addEventListener('load', resolve, { once: true });
+          }
+        });
+
+        // 5) Small extra paint delay
+        await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+        // 6) Load site animation logic LAST
+        try {
+          await loadScript('/assets/js/home.js');
+        } catch (e) {
+          console.error('Failed loading home.js', e);
+        }
+
+        // 7) Safety: if preloader overlay is still present after 5s, remove it
+        setTimeout(() => {
+          const preloader = document.querySelector('.preloader');
+          if (preloader) {
+            preloader.parentNode?.removeChild(preloader);
+          }
+        }, 5000);
 
         // Initialize Rive animations
         if (window.rive) {
@@ -136,6 +159,9 @@ function App() {
         window.__externalScriptsLoaded = true;
       } catch (error) {
         console.error('Error loading scripts:', error);
+        // Remove preloader as emergency fallback
+        const preloader = document.querySelector('.preloader');
+        if (preloader) preloader.parentNode?.removeChild(preloader);
       }
     };
 
