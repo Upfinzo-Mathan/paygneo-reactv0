@@ -25,27 +25,60 @@ import {
 
 function App() {
   useEffect(() => {
+    // Compute absolute base URL for assets (supports subpath hosting)
+    const envBase = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) || '/';
+    const absoluteBase = new URL(envBase, window.location.origin).toString();
+    const withBase = (path) => new URL(path.replace(/^\/+/, ''), absoluteBase).toString();
+    // Expose for debugging
+    window.__ASSET_BASE__ = absoluteBase;
+
     // Load external scripts
     const loadScript = (src) => {
       return new Promise((resolve, reject) => {
         const script = document.createElement('script');
         script.src = src;
+        script.async = true;
         script.onload = resolve;
-        script.onerror = reject;
+        script.onerror = (e) => {
+          console.error('Failed to load script:', src, e);
+          reject(e);
+        };
         document.head.appendChild(script);
+      });
+    };
+
+    // Rewrite assets that use "/assets/..." to respect base path (only when hosted on subpath)
+    const rewriteAssetsToBase = () => {
+      if (absoluteBase.endsWith('/')) {
+        // When base is root '/', asset URLs are already correct, skip rewrite
+        if (absoluteBase === `${window.location.origin}/`) return;
+      }
+      const fixUrl = (url) => {
+        if (!url) return url;
+        if (url.startsWith('/assets/')) return withBase(url.slice(1));
+        return url;
+      };
+      document.querySelectorAll('img[src^="/assets/"], source[src^="/assets/"], video[src^="/assets/"], link[href^="/assets/"], script[src^="/assets/"], a[href^="/assets/"]').forEach((el) => {
+        if (el.hasAttribute('src')) el.setAttribute('src', fixUrl(el.getAttribute('src')));
+        if (el.hasAttribute('href')) el.setAttribute('href', fixUrl(el.getAttribute('href')));
+      });
+      document.querySelectorAll('video[poster^="/assets/"]').forEach((el) => {
+        el.setAttribute('poster', fixUrl(el.getAttribute('poster')));
       });
     };
 
     const loadScripts = async () => {
       try {
+        rewriteAssetsToBase();
+
         // Load jQuery first
-        await loadScript('/assets/js/jquery.js');
+        await loadScript(withBase('assets/js/jquery.js'));
 
         // Load GSAP core, then plugins in sequence to guarantee availability
-        await loadScript('/assets/js/gsap.min.js');
-        await loadScript('/assets/js/ScrollTrigger.min.js');
-        await loadScript('/assets/js/ScrollToPlugin.min.js');
-        await loadScript('/assets/js/motionpath.min.js');
+        await loadScript(withBase('assets/js/gsap.min.js'));
+        await loadScript(withBase('assets/js/ScrollTrigger.min.js'));
+        await loadScript(withBase('assets/js/ScrollToPlugin.min.js'));
+        await loadScript(withBase('assets/js/motionpath.min.js'));
 
         // Register plugins if available (needed for home.js usage)
         if (window.gsap && window.ScrollTrigger) {
@@ -54,11 +87,11 @@ function App() {
 
         // Load the rest that don't require strict ordering
         await Promise.all([
-          loadScript('/assets/js/bootstrap.bundle.min.js'),
-          loadScript('/assets/js/tilt.min.js'),
-          loadScript('/assets/js/spotlight_effect.js'),
-          loadScript('/assets/js/lottie.min.js'),
-          loadScript('/assets/js/owl.carousel.min.js'),
+          loadScript(withBase('assets/js/bootstrap.bundle.min.js')),
+          loadScript(withBase('assets/js/tilt.min.js')),
+          loadScript(withBase('assets/js/spotlight_effect.js')),
+          loadScript(withBase('assets/js/lottie.min.js')),
+          loadScript(withBase('assets/js/owl.carousel.min.js')),
         ]);
 
         // Load Rive runtime
@@ -72,7 +105,7 @@ function App() {
 
           if (payrollCanvas) {
             const payroll_riv = new window.rive.Rive({
-              src: '/assets/riv/payroll.riv',
+              src: withBase('assets/riv/payroll.riv'),
               canvas: payrollCanvas,
               autoplay: true,
               artboard: 'Payroll opt 1',
@@ -84,7 +117,7 @@ function App() {
 
           if (payoutCanvas) {
             const payout_riv = new window.rive.Rive({
-              src: '/assets/riv/payout.riv',
+              src: withBase('assets/riv/payout.riv'),
               canvas: payoutCanvas,
               autoplay: true,
               artboard: 'Payout opt 1',
@@ -96,7 +129,7 @@ function App() {
 
           if (expCanvas) {
             const exp_img = new window.rive.Rive({
-              src: '/assets/riv/Four.riv',
+              src: withBase('assets/riv/Four.riv'),
               canvas: expCanvas,
               autoplay: true,
               stateMachines: 'Four',
@@ -107,7 +140,7 @@ function App() {
         }
 
         // Finally load site behaviors that expect GSAP + plugins to be ready
-        await loadScript('/assets/js/home.js');
+        await loadScript(withBase('assets/js/home.js'));
       } catch (error) {
         console.error('Error loading scripts:', error);
       }
