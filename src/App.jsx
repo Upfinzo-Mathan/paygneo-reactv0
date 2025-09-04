@@ -49,39 +49,19 @@ function App() {
         if (window.__externalScriptsLoaded) return;
         // Load jQuery first
         await loadScript('/assets/js/jquery.js');
-        
-        // 1) Load GSAP core and plugins FIRST
-        await loadScript('/assets/js/gsap.min.js');
-        await loadScript('/assets/js/ScrollTrigger.min.js');
-        await loadScript('/assets/js/ScrollToPlugin.min.js');
-        await loadScript('/assets/js/motionpath.min.js');
 
-        // 2) Register GSAP plugins BEFORE any animation scripts run
-        if (window.gsap) {
-          const plugins = [];
-          if (window.ScrollTrigger) plugins.push(window.ScrollTrigger);
-          if (window.ScrollToPlugin) plugins.push(window.ScrollToPlugin);
-          if (window.MotionPathPlugin) plugins.push(window.MotionPathPlugin);
-          try {
-            if (plugins.length) {
-              window.gsap.registerPlugin(...plugins);
-            }
-          } catch (e) {
-            // ignore plugin registration errors, continue
-          }
-        }
-
-        // 3) Load remaining vendor scripts (order-safe)
+        // Load vendor scripts that don't crash on missing elements
         await Promise.all([
           loadScript('/assets/js/bootstrap.bundle.min.js'),
           loadScript('/assets/js/tilt.min.js'),
           loadScript('/assets/js/spotlight_effect.js'),
           loadScript('/assets/js/lottie.min.js'),
           loadScript('/assets/js/owl.carousel.min.js'),
-          loadScript('https://unpkg.com/@rive-app/webgl2@latest')
+          // Use Rive canvas build to avoid WebGL shader warnings
+          loadScript('https://unpkg.com/@rive-app/canvas@latest')
         ]);
 
-        // 4) Ensure full window load to guarantee all assets, fonts and React DOM are ready
+        // Ensure full window load to guarantee all assets, fonts and React DOM are ready
         await new Promise((resolve) => {
           if (document.readyState === 'complete') {
             resolve();
@@ -90,25 +70,23 @@ function App() {
           }
         });
 
-        // 5) Small extra paint delay
+        // Small extra paint delay
         await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
 
-        // 6) Load site animation logic LAST
-        try {
-          await loadScript('/assets/js/home.js');
-        } catch (e) {
-          console.error('Failed loading home.js', e);
+        // SAFE LOADER: hide preloader if present, ensure page is visible
+        const preloader = document.querySelector('.preloader');
+        if (preloader) {
+          preloader.classList.remove('show');
+          // remove from DOM shortly after to avoid blocking interactions
+          setTimeout(() => preloader.parentNode?.removeChild(preloader), 300);
+        }
+        const page = document.querySelector('.page');
+        if (page) {
+          page.style.visibility = 'visible';
+          page.style.opacity = '1';
         }
 
-        // 7) Safety: if preloader overlay is still present after 5s, remove it
-        setTimeout(() => {
-          const preloader = document.querySelector('.preloader');
-          if (preloader) {
-            preloader.parentNode?.removeChild(preloader);
-          }
-        }, 5000);
-
-        // Initialize Rive animations
+        // Initialize Rive animations safely (only if canvases exist)
         if (window.rive) {
           const payrollCanvas = document.getElementById("payroll");
           const payoutCanvas = document.getElementById("payout");
@@ -122,9 +100,7 @@ function App() {
               artboard: "Payroll opt 1",
               stateMachines: "Payroll",
               useOffscreenRenderer: true,
-              onLoad: () => {
-                payroll_riv.resizeDrawingSurfaceToCanvas();
-              },
+              onLoad: () => payroll_riv.resizeDrawingSurfaceToCanvas(),
             });
           }
 
@@ -136,9 +112,7 @@ function App() {
               artboard: "Payout opt 1",
               stateMachines: "Payout",
               useOffscreenRenderer: true,
-              onLoad: () => {
-                payout_riv.resizeDrawingSurfaceToCanvas();
-              },
+              onLoad: () => payout_riv.resizeDrawingSurfaceToCanvas(),
             });
           }
 
@@ -149,9 +123,7 @@ function App() {
               autoplay: true,
               stateMachines: "Four",
               useOffscreenRenderer: true,
-              onLoad: () => {
-                exp_img.resizeDrawingSurfaceToCanvas();
-              },
+              onLoad: () => exp_img.resizeDrawingSurfaceToCanvas(),
             });
           }
         }
@@ -159,7 +131,7 @@ function App() {
         window.__externalScriptsLoaded = true;
       } catch (error) {
         console.error('Error loading scripts:', error);
-        // Remove preloader as emergency fallback
+        // Emergency fallback: remove preloader if it blocks the UI
         const preloader = document.querySelector('.preloader');
         if (preloader) preloader.parentNode?.removeChild(preloader);
       }
@@ -171,7 +143,7 @@ function App() {
   return (
     <>
       <Preloader />
-      <div className="page">
+      <div className="page" style={{ visibility: 'hidden', opacity: 0 }}>
         <main className="smooth-scroll">
           <CursorEffect />
           <Navigation />
