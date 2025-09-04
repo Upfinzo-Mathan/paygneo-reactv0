@@ -1,0 +1,201 @@
+.banner_section {
+  position: relative;
+}
+@media (max-width: 1023px) {
+  .banner_section {
+    padding-top: 130px;
+  }
+}
+.banner_section .container {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (max-width: 1024px) {
+  .banner_section .container {
+    height: 100%;
+  }
+}
+@media (max-width: 991px) {
+  .banner_section .container {
+    flex-direction: column !important;
+    height: 100%;
+  }
+}
+.banner_section .banner_img {
+  display: flex;
+  width: 50%;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-end;
+}
+@media (max-width: 991px) {
+  .banner_section .banner_img {
+    width: 100%;
+    justify-content: center;
+  }
+}
+.banner_section .banner_img video {
+  width: 90%;
+  padding-top: 80px;
+}
+.banner_section .banner_content {
+  position: relative;
+  top: 40px;
+  /* Buttons */
+}
+.banner_section .banner_content h3 {
+  font-size: 25px;
+  font-weight: 400;
+  background: linear-gradient(90deg, #ffffff 10%, #91a4ff 35%);
+  background-clip: text;
+  line-height: 121%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media (max-width: 767px) {
+  .banner_section .banner_content h3 {
+    text-align: center;
+    font-size: 24px;
+  }
+}
+.banner_section .banner_content h1 {
+  font-size: 50px;
+  font-weight: 700;
+  background: linear-gradient(266.5deg, #17afe0 14.76%, #ffffff 125.03%);
+  background-clip: text;
+  line-height: 75px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 30px;
+}
+@media (max-width: 991px) {
+  .banner_section .banner_content h1 {
+    font-size: 38px;
+    text-align: center;
+    line-height: 30px;
+  }
+}
+@media (max-width: 1399px) {
+  .banner_section .banner_content h1 {
+    font-size: 44px;
+    line-height: 56px;
+  }
+}
+.banner_section .banner_content h1 span {
+  color: #ddd;
+  background: linear-gradient(266.5deg, #30bbd8 14.76%, #045aff 125.03%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.banner_section .banner_content .buttons {
+  margin-top: 50px;
+  display: flex;
+  gap: 15px;
+}
+@media (max-width: 767px) {
+  .banner_section .banner_content .buttons {
+    justify-content: center;
+  }
+}
+.banner_section .banner_content .buttons .explore_btn,
+.banner_section .banner_content .buttons .reachout_btn {
+  padding: 16px 48px !important;
+  font-size: 16px;
+}
+@media (max-width: 1199px) {
+  .banner_section .banner_content .buttons .explore_btn,
+  .banner_section .banner_content .buttons .reachout_btn {
+    padding: 8px 28px !important;
+    font-size: 14px !important;
+  }
+}
+.banner_section .banner_content .buttons .explore_btn {
+  border-radius: 10px;
+  padding: 12px 24px;
+  background: linear-gradient(163.38deg, rgba(63, 83, 216, 0.7490196078) 22.64%, rgba(83, 129, 242, 0.7490196078) 84.9%);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 11.98px 22.46px 0px #003861;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+@media (max-width: 991px) {
+  .banner_section .banner_content .buttons .explore_btn {
+    font-size: 12px;
+  }
+}
+.banner_section .banner_content .buttons .explore_btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(0deg, transparent, transparent 30%, rgba(83, 129, 242, 0.75));
+  transform: rotate(-45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+.banner_section .banner_content .buttons .explore_btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(83, 129, 242, 0.75);
+}
+.banner_section .banner_content .buttons .explore_btn:hover::before {
+  opacity: 1;
+  transform: rotate(-45deg) translateY(123%);
+}
+.banner_section .banner_content .buttons .explore_btn .icon {
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 991px) {
+  .banner_section .banner_content .buttons .explore_btn .icon img {
+    width: 15px;
+  }
+}
+@media (max-width: 1199px) {
+  .banner_section .banner_content .buttons .explore_btn {
+    padding: 8px 28px !important;
+    font-size: 14px !important;
+  }
+}
+.banner_section .banner_content .buttons .reachout_btn {
+  position: relative;
+  padding: 20px;
+  font-size: 18px;
+  color: white;
+  background: transparent; /* Inner Background */
+  border-radius: 10px; /* Rounded Corners */
+  border: 2px solid transparent; /* Transparent Border */
+  /* Gradient Border */
+  background: linear-gradient(black, black) padding-box, linear-gradient(101.36deg, #094555 -26.8%, #2bb6e2 83.32%) border-box; /* Gradient Border */
+  /* This ensures that the gradient applies only to the border */
+  background-clip: padding-box, border-box;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+.banner_section .banner_content .buttons .reachout_btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(0deg, transparent, transparent 30%, rgba(83, 129, 242, 0.75));
+  transform: rotate(-45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+.banner_section .banner_content .buttons .reachout_btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(83, 129, 242, 0.75);
+}
+.banner_section .banner_content .buttons .reachout_btn:hover::before {
+  opacity: 1;
+  transform: rotate(-45deg) translateY(123%);
+}

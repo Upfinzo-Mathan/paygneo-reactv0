@@ -1,0 +1,12 @@
+export { default as BannerSection } from './BannerSection';
+export { default as ProductSection } from './ProductSection';
+export { default as PayoutServiceSection } from './PayoutServiceSection';
+export { default as SecurePrivateSection } from './SecurePrivateSection';
+export { default as PayoutTextSection } from './PayoutTextSection';
+export { default as PaymentWorkflowSection } from './PaymentWorkflowSection';
+export { default as PaymentsTextSection } from './PaymentsTextSection';
+export { default as PoweringSection } from './PoweringSection';
+export { default as PaymentProcessSection } from './PaymentProcessSection';
+export { default as SupportSection } from './SupportSection';
+export { default as ReachOutSection } from './ReachOutSection';
+export { default as Footer } from './Footer';

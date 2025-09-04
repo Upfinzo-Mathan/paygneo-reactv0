@@ -1,0 +1,15 @@
+.paygneo_text_sec {
+  position: relative;
+}
+.paygneo_text_sec .container {
+  display: flex;
+  justify-content: center;
+}
+.paygneo_text_sec .container video {
+  width: 100%;
+}
+@media (max-width: 991px) {
+  .paygneo_text_sec .container video {
+    padding: 100px 0px;
+  }
+}

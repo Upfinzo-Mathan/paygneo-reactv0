@@ -1,0 +1,15 @@
+@import "./variable.scss";
+
+.paygneo_text_sec {
+  position: relative;
+  .container {
+    display: flex;
+    justify-content: center;
+    video {
+      width: 100%;
+       @media (max-width: 991px) {
+          padding:100px 0px;
+          }
+    }
+  }
+}

@@ -1,0 +1,404 @@
+.payment_workflow_section {
+  padding: 66px 0px;
+}
+@media (max-width: 991px) {
+  .payment_workflow_section {
+    padding: 40px 20px;
+  }
+}
+.payment_workflow_section .payment_workflow_top {
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payment_workflow_top {
+    display: block;
+  }
+}
+.payment_workflow_section .payment_workflow_title {
+  width: 30%;
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payment_workflow_title {
+    width: 100%;
+    padding-bottom: 40px;
+  }
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payment_workflow_title .hash_tag_con {
+    margin-bottom: 80px;
+  }
+}
+.payment_workflow_section .payment_workflow_title h2 {
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 56px;
+  text-align: center;
+  background: linear-gradient(90deg, #ffffff 20%, #15bffd 70%);
+  color: #ffffff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 24px;
+  margin: 0;
+  text-align: left !important;
+  padding-bottom: 0px;
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payment_workflow_title h2 {
+    font-size: 32px;
+    line-height: 42px;
+    padding-bottom: 12px;
+  }
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payment_workflow_title h2 {
+    text-align: center !important;
+  }
+}
+.payment_workflow_section .payment_workflow_title p {
+  margin-bottom: 0px !important;
+}
+.payment_workflow_section .payment_workflow_title .subtitle_payment_workflow {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 134%;
+  text-align: center;
+  background: linear-gradient(90deg, #8798de 0%, #ffffff 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #a5a3a8;
+  margin: 0;
+  padding: 24px 0px 52px;
+  text-align: left !important;
+  font-size: 20px;
+  color: rgb(255, 255, 255) !important;
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payment_workflow_title .subtitle_payment_workflow {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payment_workflow_title .subtitle_payment_workflow {
+    padding: 0px 0px 20px;
+    text-align: center !important;
+  }
+}
+.payment_workflow_section .payment_workflow_title .support_button {
+  padding-top: 0px;
+  display: inline-flex;
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payment_workflow_title .support_button {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+  }
+}
+.payment_workflow_section .payment_workflow_title .support_button a {
+  border-radius: 10px;
+  padding: 12px 24px;
+  background: linear-gradient(163.38deg, rgba(63, 83, 216, 0.7490196078) 22.64%, rgba(83, 129, 242, 0.7490196078) 84.9%);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 11.98px 22.46px 0px #003861;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payment_workflow_title .support_button a {
+    font-size: 12px;
+  }
+}
+.payment_workflow_section .payment_workflow_title .support_button a::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(0deg, transparent, transparent 30%, rgba(83, 129, 242, 0.75));
+  transform: rotate(-45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+.payment_workflow_section .payment_workflow_title .support_button a:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(83, 129, 242, 0.75);
+}
+.payment_workflow_section .payment_workflow_title .support_button a:hover::before {
+  opacity: 1;
+  transform: rotate(-45deg) translateY(123%);
+}
+.payment_workflow_section .payment_workflow_title .support_button a .icon {
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payment_workflow_title .support_button a .icon img {
+    width: 15px;
+  }
+}
+.payment_workflow_section .payment_workflow_title .support_button a .text {
+  padding-right: 12px;
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payment_workflow_title .support_button a .text {
+    font-size: 12px;
+  }
+}
+.payment_workflow_section .payment_workflow_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payment_workflow_grid {
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+  }
+}
+@media (max-width: 767px) {
+  .payment_workflow_section .payment_workflow_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.payment_workflow_section .payment_workflow_grid .payout_content_icon {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 45px;
+  margin-left: 70px;
+  transition: all 1s ease;
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payment_workflow_grid .payout_content_icon {
+    margin-left: 0px;
+    flex-direction: column;
+    align-items: start;
+  }
+}
+.payment_workflow_section .payment_workflow_grid .payout_content_icon:hover .payout_content,
+.payment_workflow_section .payment_workflow_grid .payout_content_icon:hover .payout_icon {
+  transform: scale(1.1);
+  transition: all 1s ease;
+}
+.payment_workflow_section .payment_workflow_grid .payout_content_icon .payout_icon {
+  transition: all 1s ease;
+  position: relative;
+  background: linear-gradient(180deg, #004660 0%, rgba(0, 31, 42, 0.63) 100%);
+  border: 1px solid;
+  width: 82px;
+  height: 80px;
+  border-radius: 12px;
+  border-width: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, rgb(10, 20, 40) 20%, rgb(5, 10, 20) 100%);
+}
+.payment_workflow_section .payment_workflow_grid .payout_content_icon .payout_icon img {
+  transition: all 0.5s ease-in-out;
+}
+.payment_workflow_section .payment_workflow_grid .payout_content_icon .payout_icon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(270deg, #15bffd, #000000, #15bffd);
+  background-size: 200% 200%;
+  animation: borderLoop 3s linear infinite;
+  border: none;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  z-index: 1;
+  pointer-events: none;
+}
+@keyframes borderLoop {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.payment_workflow_section .payment_workflow_grid .payout_content_icon .payout_icon::after {
+  content: "";
+  position: absolute;
+  border-radius: 12px;
+  inset: 5px; /* Creates the inner glow effect */
+  box-shadow: inset 0 0 10px rgba(74, 158, 218, 0.5); /* Soft blue glow */
+}
+.payment_workflow_section .payment_workflow_grid .payout_content_icon .payout_content {
+  transition: all 1s ease;
+  padding-left: 30px;
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payment_workflow_grid .payout_content_icon .payout_content {
+    padding: 20px 0px;
+  }
+}
+.payment_workflow_section .payment_workflow_grid .payout_content_icon .payout_content p {
+  background: linear-gradient(180deg, #ffffff 0%, #15bffd 100%);
+  color: #ffffff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 0px;
+}
+@media (max-width: 767px) {
+  .payment_workflow_section .payment_workflow_grid .payout_content_icon .payout_content p {
+    width: 120px;
+  }
+}
+.payment_workflow_section .payout_workflow_image {
+  margin-top: 50px;
+  border-radius: 20px;
+  /* Mask to clip content to border-radius */
+  -webkit-mask-image: radial-gradient(circle at center, black 99%, transparent 100%);
+  -webkit-mask-composite: destination-in;
+  mask-image: radial-gradient(circle at center, black 99%, transparent 100%);
+  mask-composite: intersect;
+  position: relative;
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payout_workflow_image {
+    margin-top: 0;
+  }
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payout_workflow_image .row {
+    gap: 60px;
+  }
+}
+.payment_workflow_section .payout_workflow_image .paygneo_card_1 {
+  width: 100%;
+  height: 425px;
+  border-width: 1px;
+  border: 1px solid transparent;
+  background: linear-gradient(to bottom, #040e1d, #040e1d, #040e1d, rgba(23, 170, 219, 0.262745098), #17afe0) border-box;
+  overflow: hidden;
+  position: relative;
+}
+@media (max-width: 1399px) {
+  .payment_workflow_section .payout_workflow_image .paygneo_card_1 {
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payout_workflow_image .paygneo_card_1 {
+    width: 50%;
+  }
+}
+@media (max-width: 767px) {
+  .payment_workflow_section .payout_workflow_image .paygneo_card_1 {
+    width: 300px;
+  }
+}
+.payment_workflow_section .payout_workflow_image .paygneo_card_1:hover .paygneo_card_content {
+  transition: all 0.6s ease;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+}
+.payment_workflow_section .payout_workflow_image .paygneo_card_1:hover .image_overlay {
+  opacity: 1;
+}
+.payment_workflow_section .payout_workflow_image .paygneo_card_1 .paygneo_card_content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: all 0.6s ease;
+}
+.payment_workflow_section .payout_workflow_image .paygneo_card_1 .paygneo_card_content .content_center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  padding: 0px 20px;
+}
+.payment_workflow_section .payout_workflow_image .paygneo_card_1 .paygneo_card_content h4 {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 0px;
+  font-weight: 500;
+  text-align: center;
+  background: linear-gradient(90deg, #ffffff 20%, #15bffd 70%);
+  color: #ffffff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 24px;
+  margin: 0;
+  padding-bottom: 0px;
+}
+.payment_workflow_section .payout_workflow_image .paygneo_card_1 .paygneo_card_content p {
+  color: rgb(173, 178, 177) !important;
+  font-size: 17px;
+  font-weight: 400;
+  text-align: center;
+  background: linear-gradient(90deg, #8798de 0%, #ffffff 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #a5a3a8;
+  margin: 0;
+  padding: 24px 0px 52px;
+  color: rgb(255, 255, 255) !important;
+}
+@media (max-width: 991px) {
+  .payment_workflow_section .payout_workflow_image .paygneo_card_1 .paygneo_card_content p {
+    padding: 24px 0px 0px;
+  }
+}
+.payment_workflow_section .payout_workflow_image .paygneo_card_1 video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.payment_workflow_section .payout_workflow_image .card_1 .paygneo_card_1 {
+  border-bottom-left-radius: 20px;
+}
+@media (max-width: 1399px) {
+  .payment_workflow_section .payout_workflow_image .card_1 .paygneo_card_1 {
+    border-bottom-right-radius: 20px;
+  }
+}
+@media (max-width: 1399px) {
+  .payment_workflow_section .payout_workflow_image .card_2 .paygneo_card_1 {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+}
+.payment_workflow_section .payout_workflow_image .card_3 .paygneo_card_1 {
+  border-bottom-right-radius: 20px;
+}
+@media (max-width: 1399px) {
+  .payment_workflow_section .payout_workflow_image .card_3 .paygneo_card_1 {
+    border-bottom-left-radius: 20px;
+  }
+}

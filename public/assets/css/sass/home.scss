@@ -1,0 +1,32 @@
+#playPauseBtn {
+  position: fixed;
+  top: 36px;
+  z-index: 15;
+  right: 37px;
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+
+.page {
+  visibility: hidden;
+  opacity: 0;
+}
+// global properties end
+
+// local properties start
+@import "./font.scss";
+@import "./header.scss";
+@import "./banner.scss";
+@import "./products.scss";
+@import "./payout_services.scss";
+@import "./secure_private.scss";
+@import "./pagyneo_text.scss";
+@import "./payment_workflow.scss";
+@import "./payment_process.scss";
+@import "./powering_payment.scss";
+@import "./exceptional_support.scss";
+@import "./testimonial.scss";
+@import "./reach_out.scss";
+@import "./rising-stars.scss";
+@import "./footer.scss";

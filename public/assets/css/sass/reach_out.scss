@@ -1,0 +1,63 @@
+@import "./variable.scss";
+
+.reach_out_section {
+  position: relative;
+  padding: 66px 0px;
+  @media (max-width: 991px) {
+    padding:0px 0px 40px;
+  }
+  &::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: url(/assets/video/bg.gif) no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    opacity: 0.2;
+}
+  .container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    .reach_out_content {
+      text-align: center;
+      color: white;
+      h2 {
+        @include section_title;
+      }
+      p {
+        @include section_sub_title;
+        padding-bottom: 54px;
+        @media (max-width: 767px) {
+          padding-bottom: 44px;
+        }
+      }
+
+      .btn {
+        background: #00b3f429;
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        padding: 26px 100px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        border: 2px solid #15bffd; /* Added border */
+        @media (max-width: 767px) {
+          font-size: 14px;
+          padding: 12px 46px;
+        }
+      }
+
+      .btn:hover {
+        box-shadow: 0px 0px 30px 3px #15bffdc7,
+          /* Outset shadow (still active) */ inset 0px 2px 45px 14px #15bffde6; /* Stronger inset on hover */
+        transform: scale(1.05);
+      }
+    }
+  }
+}

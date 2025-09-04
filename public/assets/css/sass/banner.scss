@@ -1,0 +1,211 @@
+@import "./variable.scss";
+
+.banner_section {
+  position: relative;
+
+  @media (max-width: 1023px) {
+    padding-top: 130px;
+  }
+
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   background: linear-gradient(
+  //     59.57deg,
+  //     rgba(0, 0, 0, 0.54) 38.28%,
+  //     rgba(255, 255, 255, 0.162) 246.24%
+  //   );
+  //   z-index: 1;
+  // }
+  // &::after {
+  //   content: "";
+  //   position: absolute;
+  //   bottom: 0;
+  //   width: 100%;
+  //   height: 154px;
+  //   background: linear-gradient(
+  //     180deg,
+  //     rgba(0, 0, 0, 0) 0%,
+  //     #000000a1 40%,
+  //     #000000e8 90%
+  //   );
+  //   z-index: 1;
+  // }
+  // #bgVideo {
+  //   display: none;
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   object-fit: cover;
+  // }
+  .container {
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ @media (max-width: 1024px) {
+       height: 100%;
+    }
+    @media (max-width: 991px) {
+      flex-direction: column !important;
+      height: 100%;
+    }
+   
+  }
+  .banner_img {
+    display: flex;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    @media (max-width: 991px) {
+      width: 100%;
+      justify-content: center;
+    }
+
+    // canvas {
+    //   width: 800px;
+    //   height: calc(100vh - 100px);
+    //   position: relative;
+    //   top: 6%;
+    //   @media (max-width: 1440px) {
+    //     width: 100%;
+    //     height: 580px;
+    //      top: 6% !important;
+    //   }
+    // }
+
+    video{
+      width: 90%;
+      padding-top:80px;
+    }
+  }
+
+  .banner_content {
+    position: relative;
+    top: 40px;
+    h3 {
+      font-size: 25px;
+      font-weight: 400;
+      background: linear-gradient(90deg, #ffffff 10%, #91a4ff 35%);
+      background-clip: text;
+      line-height: 121%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      @media (max-width: 767px) {
+        text-align: center;
+        font-size: 24px;
+      }
+    }
+
+    h1 {
+      font-size: 50px;
+      font-weight: 700;
+      background: linear-gradient(266.5deg, #17afe0 14.76%, #ffffff 125.03%);
+      background-clip: text;
+      line-height: 75px;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 30px;
+      @media (max-width: 991px) {
+        font-size: 38px;
+        text-align: center;
+        line-height: 30px;
+      }
+      @media (max-width: 1399px) {
+        font-size: 44px;
+        line-height: 56px;
+      }
+      span{
+        color: #ddd;
+        background: linear-gradient(266.5deg, #30bbd8 14.76%, #045aff 125.03%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      
+    }
+
+    /* Buttons */
+    .buttons {
+      margin-top: 50px;
+      display: flex;
+      gap: 15px;
+      @media (max-width: 767px) {
+        justify-content: center;
+      }
+
+      .explore_btn,
+      .reachout_btn {
+        padding: 16px 48px !important;
+        font-size: 16px;
+        @media (max-width: 1199px) {
+          padding: 8px 28px !important;
+          font-size: 14px !important;
+        }
+      }
+
+      .explore_btn {
+        @include blue_btn;
+         @media (max-width: 1199px) {
+          padding: 8px 28px !important;
+          font-size: 14px !important;
+        }
+      }
+
+      .reachout_btn {
+        position: relative;
+        padding: 20px;
+        font-size: 18px;
+        color: white;
+        background: transparent; /* Inner Background */
+        border-radius: 10px; /* Rounded Corners */
+        border: 2px solid transparent; /* Transparent Border */
+
+        /* Gradient Border */
+        background: linear-gradient(black, black) padding-box,
+          /* Inner background */
+            linear-gradient(101.36deg, #094555 -26.8%, #2bb6e2 83.32%)
+            border-box; /* Gradient Border */
+
+        /* This ensures that the gradient applies only to the border */
+        background-clip: padding-box, border-box;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s ease;
+        &::before {
+          content: "";
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: linear-gradient(
+            0deg,
+            transparent,
+            transparent 30%,
+            rgb(83 129 242 / 75%)
+          );
+          transform: rotate(-45deg);
+          transition: all 0.5s ease;
+          opacity: 0;
+        }
+
+        &:hover {
+          transform: scale(1.05);
+          box-shadow: 0 0 20px rgb(83 129 242 / 75%);
+        }
+
+        &:hover::before {
+          opacity: 1;
+          transform: rotate(-45deg) translateY(123%);
+        }
+      }
+    }
+  }
+}

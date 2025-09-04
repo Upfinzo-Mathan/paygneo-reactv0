@@ -1,0 +1,281 @@
+@import "./variable.scss";
+@mixin hover_card_dir($x: $x, $y: $y) {
+  transform: scale(1.28) translate($x, $y); // Combines zoom & move
+  .hidden-text {
+    padding-top: 12px;
+    max-height: inherit;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.support_section {
+  padding: 66px 0px;
+  @media (max-width: 991px) {
+    padding: 40px 0px;
+  }
+  // .container {
+  //   display: flex;
+  //   justify-content: flex-start;
+  //   align-items: center;
+  //   gap: 116px;
+  //   @media (max-width: 991px) {
+  //     flex-direction: column;
+  //     gap: 134px;
+  //     align-items: flex-start;
+  //   }
+  //   // .support_left {
+  //   //   flex: 0 0 40%;
+  //   //   @media (max-width: 767px) {
+  //   //     justify-items: center;
+  //   //   }
+  //   //   .support_title {
+  //   //     display: flex;
+  //   //     flex-direction: column;
+  //   //     align-items: start;
+  //   //     @media (max-width: 767px) {
+  //   //       align-items: center;
+  //   //     }
+  //   //     h2 {
+  //   //       @include section_title;
+  //   //       text-align: left !important;
+  //   //       @media (max-width: 767px) {
+  //   //         text-align: center !important;
+  //   //       }
+  //   //     }
+
+  //   //     p {
+  //   //       @include section_sub_title;
+  //   //       text-align: left;
+  //   //     }
+  //   //   }
+  //   //   .support_button {
+  //   //     padding-top: 52px;
+  //   //     @include arrow_btn;
+  //   //     @media (max-width: 767px) {
+  //   //       padding-top: 30px;
+  //   //     }
+  //   //   }
+  //   // }
+  //   // .exp-riv {
+  //   //   position: relative;
+  //   //     &::before {
+  //   //         content: "";
+  //   //         position: absolute;
+  //   //         background: #1100FF;
+  //   //         top: 50%;
+  //   //         left: 50%;
+  //   //         filter: blur(50px);
+  //   //         transform: translate(-50%, -40%) rotate(68deg);
+  //   //         width: 200px;
+  //   //         height: 200px;
+  //   //         z-index: -1;
+  //   //     }
+  //   //   canvas {
+  //   //   }
+  //   // }
+  //   // .support_right {
+  //   //   position: relative;
+  //   //   flex: 0 0 auto;
+  //   //   @media (max-width: 991px) {
+  //   //     width: 100%;
+  //   //     display: flex;
+  //   //     justify-content: center;
+  //   //   }
+  //   //   .background_glow {
+  //   //     position: absolute;
+  //   //     width: 100%;
+  //   //     height: 100%;
+  //   //   }
+  //   //   .support_cards {
+  //   //     display: grid;
+  //   //     grid-template-columns: repeat(2, 246px);
+  //   //     gap: 10px;
+  //   //     @media (max-width: 767px) {
+  //   //       grid-template-columns: unset;
+  //   //       gap: 24px;
+  //   //     }
+  //   //     .support_card {
+  //   //       position: relative;
+  //   //       right: 0;
+  //   //       top: 0;
+  //   //       border-radius: 30px;
+  //   //       border-width: 1px;
+  //   //       border: 1px solid transparent;
+  //   //       background: linear-gradient(
+  //   //           315deg,
+  //   //           rgb(7 234 211 / 23%) 7.06%,
+  //   //           rgba(7, 234, 211, 0.28) 37.66%,
+  //   //           #26ddff 90.35%,
+  //   //           rgb(38 221 255 / 0%) 115.85%
+  //   //         )
+  //   //         border-box;
+  //   //       backdrop-filter: blur(50px);
+  //   //       transition: transform 1.5s ease-in-out, box-shadow 1.5s ease-in-out;
+  //   //       &:nth-of-type(3) {
+  //   //         order: 4;
+  //   //       }
+  //   //       &:nth-of-type(4) {
+  //   //         order: 3;
+  //   //       }
+  //   //       &.active {
+  //   //         &:nth-of-type(1) {
+  //   //           @include hover_card_dir($x: -40px, $y: -40px);
+  //   //         }
+  //   //         &:nth-of-type(2) {
+  //   //           @include hover_card_dir($x: 40px, $y: -40px);
+  //   //         }
+  //   //         &:nth-of-type(3) {
+  //   //           @include hover_card_dir($x: 40px, $y: 40px);
+  //   //         }
+  //   //         &:nth-of-type(4) {
+  //   //           @include hover_card_dir($x: -40px, $y: 40px);
+  //   //         }
+  //   //         .card {
+  //   //           padding: 26px 24px;
+  //   //         }
+  //   //       }
+  //   //       .card {
+  //   //         display: flex;
+  //   //         flex-direction: column;
+  //   //         align-items: center;
+  //   //         // justify-content: center;
+  //   //         height: 246px;
+  //   //         border-radius: 30px;
+  //   //         padding: 64px 26px;
+  //   //         background-color: #000000;
+  //   //         transition: all 1.5s ease-in-out;
+  //   //         @media (max-width: 767px) {
+  //   //           height: 100%;
+  //   //           padding: 26px;
+  //   //         }
+  //   //         .support_image {
+  //   //           display: flex;
+  //   //           justify-content: center;
+  //   //           align-items: center;
+  //   //           width: 68px;
+  //   //           min-height: 68px;
+  //   //           border-radius: 43px;
+  //   //           backdrop-filter: blur(25px);
+  //   //           box-shadow: 10px 15px 10px 0px #ffffff1a inset;
+  //   //           box-shadow: 0px -10px 25px 0px #63fffa40 inset;
+  //   //           backdrop-filter: blur(50px);
+  //   //           margin-bottom: 24px;
+  //   //         }
+  //   //       }
+  //   //       p {
+  //   //         font-weight: 400;
+  //   //         font-size: 18px;
+  //   //         line-height: 130%;
+  //   //         background: linear-gradient(180deg, #26ddff 0%, #ffffff 100%);
+  //   //         color: $white;
+  //   //         background-clip: text;
+  //   //         -webkit-background-clip: text;
+  //   //         -webkit-text-fill-color: transparent;
+  //   //         margin: 0;
+  //   //         @media (max-width: 767px) {
+  //   //           font-size: 24px;
+  //   //         }
+  //   //       }
+  //   //       .hidden-text {
+  //   //         max-height: 0;
+  //   //         opacity: 0;
+  //   //         transform: translateY(10px);
+  //   //         font-size: 14px;
+  //   //         text-align: center;
+  //   //         background: linear-gradient(180deg, $white 0%, $white 100%);
+  //   //         background-clip: text;
+  //   //         -webkit-background-clip: text;
+  //   //         -webkit-text-fill-color: transparent;
+  //   //         transition: max-height 1.5s ease-in-out,
+  //   //           padding-top 1.5s ease-in-out, opacity 1.5s ease-in-out,
+  //   //           transform 1.5s ease-in-out;
+  //   //         @media (max-width: 767px) {
+  //   //           max-height: inherit;
+  //   //           opacity: 1;
+  //   //           transform: translateY(0px);
+  //   //           padding-top: 8px;
+  //   //         }
+  //   //       }
+  //   //     }
+  //   //   }
+  //   //   .call_icon {
+  //   //     position: absolute;
+  //   //     top: 50%;
+  //   //     left: 50%;
+  //   //     width: 112px;
+  //   //     height: 112px;
+  //   //     transform: translate(-50%, -50%);
+  //   //     border-radius: 30px;
+  //   //     border-width: 1px;
+  //   //     border: 1px solid transparent;
+  //   //     background: linear-gradient(
+  //   //         45deg,
+  //   //         rgba(7, 234, 211, 0) -4.51%,
+  //   //         rgba(7, 234, 211, 0.28) 26.09%,
+  //   //         #26ddff 78.78%,
+  //   //         rgba(38, 221, 255, 0) 104.28%
+  //   //       )
+  //   //       border-box;
+  //   //     @media (max-width: 767px) {
+  //   //       display: none;
+  //   //     }
+  //   //     .sub_sec {
+  //   //       width: 100%;
+  //   //       height: 100%;
+  //   //       display: flex;
+  //   //       justify-content: center;
+  //   //       align-items: center;
+  //   //       border-radius: 30px;
+  //   //       backdrop-filter: blur(50px);
+  //   //       background-color: #000000db;
+  //   //       img {
+  //   //         width: 64px;
+  //   //         height: 64px;
+  //   //       }
+  //   //     }
+  //   //   }
+  //   // }
+  // }
+
+
+
+  //  // // / / / / / / /
+  .container {
+    .support_title {
+      padding-bottom: 112px;
+      text-align: center;
+      @media (max-width: 991px) {
+        padding-bottom: 0;
+      }
+      h2 {
+        @include section_title;
+      }
+      p {
+        @include section_sub_title;
+      }
+      .support_button {
+        padding-top: 32px;
+        @include arrow_btn;
+        @media (max-width: 767px) {
+          padding-top: 16px;
+        }
+      }
+    }
+    .support_sec_content {
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        width: 15%;
+        height: 10%;
+        background: #000;
+        right: 0;
+        bottom: 26px;
+      }
+      iframe {
+        width: 100%;
+        height: 400px;
+      }
+    }
+  }
+}

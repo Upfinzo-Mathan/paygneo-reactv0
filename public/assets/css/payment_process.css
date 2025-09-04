@@ -1,0 +1,264 @@
+.payment_process_section {
+  padding: 66px 0px;
+}
+@media (max-width: 991px) {
+  .payment_process_section {
+    padding: 0px 20px;
+  }
+}
+.payment_process_section h2 {
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 56px;
+  text-align: center;
+  background: linear-gradient(90deg, #ffffff 20%, #15bffd 70%);
+  color: #ffffff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 24px;
+  margin: 0;
+}
+@media (max-width: 991px) {
+  .payment_process_section h2 {
+    font-size: 32px;
+    line-height: 42px;
+    padding-bottom: 12px;
+  }
+}
+.payment_process_section .sub_title {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 134%;
+  text-align: center;
+  background: linear-gradient(90deg, #8798de 0%, #ffffff 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #a5a3a8;
+  margin: 0;
+}
+@media (max-width: 991px) {
+  .payment_process_section .sub_title {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+.payment_process_section .container {
+  position: relative;
+}
+.payment_process_section .container .payment_process_card_part {
+  background-color: rgb(0, 2, 3);
+  padding: 107px 0px 0px;
+  border: 1px solid;
+  border-image-source: linear-gradient(90deg, rgba(0, 8, 35, 0.7) 0%, #47549c 50%, rgba(0, 7, 34, 0.82) 100%);
+}
+@media (max-width: 1399px) {
+  .payment_process_section .container .payment_process_card_part {
+    padding: 60px 0px 0px;
+  }
+}
+.payment_process_section .container .payment_process_card_part .payment_card .center::before {
+  content: url("/assets/images/star.svg");
+  height: 243px;
+  width: 1px;
+  position: absolute;
+  top: 50%;
+  left: -9%;
+  transform: translate(-50%, -50%);
+  background: rgb(0, 8, 35);
+  background: linear-gradient(360deg, rgba(0, 8, 35, 0.7) 0%, #47549c 50%, rgba(0, 7, 34, 0.82) 100%);
+  z-index: 9;
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+@media (max-width: 1399px) {
+  .payment_process_section .container .payment_process_card_part .payment_card .center::before {
+    left: -10%;
+  }
+}
+@media (max-width: 767px) {
+  .payment_process_section .container .payment_process_card_part .payment_card .center::before {
+    content: "";
+  }
+}
+.payment_process_section .container .payment_process_card_part .payment_card .center::after {
+  content: url("/assets/images/star.svg");
+  height: 243px;
+  width: 1px;
+  position: absolute;
+  top: 50%;
+  right: -3%;
+  transform: translate(-50%, -50%);
+  background: rgb(0, 8, 35);
+  background: linear-gradient(360deg, rgba(0, 8, 35, 0.7) 0%, #47549c 50%, rgba(0, 7, 34, 0.82) 100%);
+  z-index: 9;
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+@media (max-width: 1399px) {
+  .payment_process_section .container .payment_process_card_part .payment_card .center::after {
+    right: -10%;
+  }
+}
+@media (max-width: 767px) {
+  .payment_process_section .container .payment_process_card_part .payment_card .center::after {
+    content: "";
+  }
+}
+.payment_process_section .container .payment_process_card_part .payment_process_card {
+  border: 1px solid rgb(21, 191, 253);
+  width: 373px;
+  height: 450px;
+  border-radius: 28px;
+  border-width: 1px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+@media (max-width: 1399px) {
+  .payment_process_section .container .payment_process_card_part .payment_process_card {
+    width: 100%;
+    height: 410px;
+  }
+}
+@media (max-width: 1023px) {
+  .payment_process_section .container .payment_process_card_part .payment_process_card {
+    height: 352px;
+    width: 300px;
+    margin: 0 auto;
+  }
+}
+.payment_process_section .container .payment_process_card_part .payment_process_card.before_after_line::before {
+  content: url("/assets/images/star.svg");
+  height: 243px;
+  width: 1px;
+  position: absolute;
+  top: 50%;
+  left: -9%;
+  transform: translate(-50%, -50%);
+  background: rgb(0, 8, 35);
+  background: linear-gradient(360deg, rgba(0, 8, 35, 0.7) 0%, #47549c 50%, rgba(0, 7, 34, 0.82) 100%);
+  z-index: 9;
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+@media (max-width: 767px) {
+  .payment_process_section .container .payment_process_card_part .payment_process_card.before_after_line::before {
+    content: "";
+    background: unset;
+  }
+}
+.payment_process_section .container .payment_process_card_part .payment_process_card.before_after_line::after {
+  content: url("/assets/images/star.svg");
+  height: 243px;
+  width: 1px;
+  position: absolute;
+  top: 50%;
+  right: -9%;
+  transform: translate(-50%, -50%);
+  background: rgb(0, 8, 35);
+  background: linear-gradient(360deg, rgba(0, 8, 35, 0.7) 0%, #47549c 50%, rgba(0, 7, 34, 0.82) 100%);
+  z-index: 9;
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+@media (max-width: 767px) {
+  .payment_process_section .container .payment_process_card_part .payment_process_card.before_after_line::after {
+    content: "";
+    background: unset;
+  }
+}
+.payment_process_section .container .payment_process_card_part .payment_process_card #payment_process_card_img {
+  width: 100%;
+  height: 64%;
+}
+.payment_process_section .container .payment_process_card_part .payment_process_card #payment_process_card_img video {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+}
+@media (max-width: 1024px) {
+  .payment_process_section .container .payment_process_card_part .payment_process_card #payment_process_card_img video {
+    width: 50%;
+  }
+}
+.payment_process_section .container .payment_process_card_part .payment_process_card .payment_process_card_content {
+  padding: 28px;
+}
+.payment_process_section .container .payment_process_card_part .payment_process_card .payment_process_card_content h4 {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  padding-bottom: 10px;
+  margin: 0;
+}
+.payment_process_section .container .payment_process_card_part .payment_process_card .payment_process_card_content p {
+  color: rgb(173, 178, 177) !important;
+  font-size: 16px !important;
+}
+.payment_process_section .container .payment_process_card_part .owl-nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  margin-top: 50px;
+}
+@media (max-width: 767px) {
+  .payment_process_section .container .payment_process_card_part .owl-nav {
+    margin-top: 30px;
+  }
+}
+.payment_process_section .container .payment_process_card_part .owl-nav .owl-prev,
+.payment_process_section .container .payment_process_card_part .owl-nav .owl-next {
+  color: #ffffff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 10px !important;
+  transition: all 0.5s ease;
+  border: 1.5px solid rgb(21, 191, 253);
+  overflow: hidden;
+}
+@media (max-width: 991px) {
+  .payment_process_section .container .payment_process_card_part .owl-nav .owl-prev,
+  .payment_process_section .container .payment_process_card_part .owl-nav .owl-next {
+    width: 30px;
+    height: 30px;
+    padding: 0px !important;
+  }
+}
+.payment_process_section .container .payment_process_card_part .owl-nav .owl-prev.disabled,
+.payment_process_section .container .payment_process_card_part .owl-nav .owl-next.disabled {
+  opacity: 0.4;
+}
+.payment_process_section .container .payment_process_card_part .owl-nav .owl-prev .custom-prev,
+.payment_process_section .container .payment_process_card_part .owl-nav .owl-prev .custom-next,
+.payment_process_section .container .payment_process_card_part .owl-nav .owl-next .custom-prev,
+.payment_process_section .container .payment_process_card_part .owl-nav .owl-next .custom-next {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.payment_process_section .container .payment_process_card_part .owl-nav .owl-prev svg,
+.payment_process_section .container .payment_process_card_part .owl-nav .owl-next svg {
+  transition: all 0.2s ease;
+  width: 28px;
+  height: 28px;
+  color: rgb(164, 239, 251);
+}
+@media (max-width: 991px) {
+  .payment_process_section .container .payment_process_card_part .owl-nav .owl-prev svg,
+  .payment_process_section .container .payment_process_card_part .owl-nav .owl-next svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+.payment_process_section .container .payment_process_card_part .owl-nav .owl-prev svg {
+  transform: rotate(180deg);
+}

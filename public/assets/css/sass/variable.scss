@@ -1,0 +1,109 @@
+$primary-color: #17afe0;
+$secondary-color: #f7c35f;
+$tertiary-color: #15bffd;
+$white: #ffffff;
+$black: #000000;
+$bg-color: #000000;
+$gray-color: #979797;
+$ternary-color: #2d4949;
+
+@mixin blue_btn {
+  border-radius: 10px;
+  padding: 12px 24px;
+  background: linear-gradient(163.38deg, #3f53d8bf 22.64%, #5381f2bf 84.9%);
+  color: $white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 11.98px 22.46px 0px #003861;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
+   @media (max-width: 991px) {
+    font-size: 12px;
+    
+    }
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      0deg, 
+      transparent, 
+      transparent 30%, 
+      rgb(83 129 242 / 75%)
+    );
+    transform: rotate(-45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+  }
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgb(83 129 242 / 75%);
+  }
+  
+  &:hover::before {
+    opacity: 1;
+    transform: rotate(-45deg) translateY(123%);
+  }
+  .icon {
+      display: flex;
+      align-items: center;
+
+      img{
+  @media (max-width: 991px) {
+         width:15px;
+    }
+      }
+     
+    }
+}
+@mixin arrow_btn {
+  display: inline-flex;
+  a {
+    display: flex;
+    align-items: center;
+    @include blue_btn;
+    .text {
+      padding-right: 12px;
+    }
+  }
+}
+@mixin section_title {
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 56px;
+  text-align: center;
+  background: linear-gradient(90deg, $white 20%, #15bffd 70%);
+  color: $white;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 24px;
+  margin: 0;
+  @media (max-width: 991px) {
+    font-size: 32px;
+    line-height: 42px;
+    padding-bottom: 12px;
+    }
+}
+@mixin section_sub_title {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 134%;
+  text-align: center;
+  background: linear-gradient(90deg, #8798de 0%, $white 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #a5a3a8;
+  margin: 0;
+
+  @media (max-width: 991px) {
+    font-size: 18px;
+    line-height: 24px;
+    }
+}
