@@ -50,20 +50,40 @@ function App() {
         // Load jQuery first
         await loadScript('/assets/js/jquery.js');
         
-        // Load other scripts
+        // 1) Load GSAP core and plugins FIRST
+        await loadScript('/assets/js/gsap.min.js');
+        await loadScript('/assets/js/ScrollTrigger.min.js');
+        await loadScript('/assets/js/ScrollToPlugin.min.js');
+        await loadScript('/assets/js/motionpath.min.js');
+
+        // 2) Register GSAP plugins BEFORE any animation scripts run
+        if (window.gsap) {
+          const plugins = [];
+          if (window.ScrollTrigger) plugins.push(window.ScrollTrigger);
+          if (window.ScrollToPlugin) plugins.push(window.ScrollToPlugin);
+          // MotionPath plugin global can be MotionPathPlugin or MotionPathHelper depending on file
+          if (window.MotionPathPlugin) plugins.push(window.MotionPathPlugin);
+          try {
+            if (plugins.length) {
+              window.gsap.registerPlugin(...plugins);
+            }
+          } catch (e) {
+            // ignore plugin registration errors, continue
+          }
+        }
+
+        // 3) Load remaining vendor scripts (order-safe)
         await Promise.all([
           loadScript('/assets/js/bootstrap.bundle.min.js'),
           loadScript('/assets/js/tilt.min.js'),
           loadScript('/assets/js/spotlight_effect.js'),
-          loadScript('/assets/js/gsap.min.js'),
-          loadScript('/assets/js/ScrollTrigger.min.js'),
-          loadScript('/assets/js/ScrollToPlugin.min.js'),
-          loadScript('/assets/js/motionpath.min.js'),
           loadScript('/assets/js/lottie.min.js'),
           loadScript('/assets/js/owl.carousel.min.js'),
-          loadScript('/assets/js/home.js'),
           loadScript('https://unpkg.com/@rive-app/webgl2@latest')
         ]);
+
+        // 4) Load site animation logic LAST so it sees registered plugins
+        await loadScript('/assets/js/home.js');
 
         // Initialize Rive animations
         if (window.rive) {
