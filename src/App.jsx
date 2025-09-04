@@ -93,10 +93,14 @@ function App() {
         // 5) Small extra paint delay
         await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
 
-        // NOTE: Intentionally NOT loading /assets/js/home.js due to null classList errors
-        // Its logic will be migrated into React/GSAP progressively.
+        // 6) Load site animation logic LAST
+        try {
+          await loadScript('/assets/js/home.js');
+        } catch (e) {
+          console.error('Failed loading home.js', e);
+        }
 
-        // Safety: if preloader overlay is still present after 5s, remove it
+        // 7) Safety: if preloader overlay is still present after 5s, remove it
         setTimeout(() => {
           const preloader = document.querySelector('.preloader');
           if (preloader) {
