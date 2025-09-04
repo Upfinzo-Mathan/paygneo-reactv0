@@ -19,10 +19,9 @@ function Preloader() {
         return () => clearInterval(timer);
     }, []);
 
-    if (!isVisible) return null;
-
+    // Keep element mounted; toggle visibility instead of unmounting
     return (
-        <div className={`preloader ${isVisible ? 'show' : ''}`}>
+        <div className={`preloader ${isVisible ? 'show' : ''}`} style={{ display: isVisible ? 'flex' : 'none' }}>
             <img src="/assets/images/loader_blue.gif" alt="" style={{ width: '10%' }} />
             <div className="txt">
                 <div id="playBtn" style={{ cursor: 'pointer' }} className="loader_music">
