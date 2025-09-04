@@ -151,6 +151,49 @@ function App() {
     loadScripts();
   }, []);
 
+  // Ensure ScrollTrigger measures after videos size themselves in hosted build
+  useEffect(() => {
+    const refresh = () => {
+      if (window.ScrollTrigger && window.ScrollTrigger.refresh) {
+        try { window.ScrollTrigger.refresh(); } catch (_) {}
+      }
+    };
+
+    const prepareVideo = (video) => {
+      if (!video) return;
+      // Ensure autoplay inline behavior
+      video.setAttribute('playsinline', '');
+      video.setAttribute('muted', '');
+      video.muted = true;
+      // Refresh when metadata known (sizes)
+      if (video.readyState >= 1) {
+        refresh();
+      } else {
+        const onMeta = () => { refresh(); video.removeEventListener('loadedmetadata', onMeta); };
+        video.addEventListener('loadedmetadata', onMeta);
+      }
+    };
+
+    const hookup = () => {
+      const payout = document.querySelector('.payout_text_video');
+      const payments = document.querySelector('.payments_text_video');
+      prepareVideo(payout);
+      prepareVideo(payments);
+      // Additional refresh after a tick for layout
+      setTimeout(refresh, 100);
+      setTimeout(refresh, 400);
+    };
+
+    // When libs ready (from Preloader) or on window load
+    window.addEventListener('libs:ready', hookup, { once: true });
+    window.addEventListener('load', hookup, { once: true });
+
+    return () => {
+      window.removeEventListener('libs:ready', hookup);
+      window.removeEventListener('load', hookup);
+    };
+  }, []);
+
   return (
     <>
       <Preloader />
