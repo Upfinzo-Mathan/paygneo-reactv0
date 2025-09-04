@@ -14,9 +14,10 @@
     <!-- Performance hints -->
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="dns-prefetch" href="https://unpkg.com">
-    <link rel="preload" as="script" href="/assets/js/gsap.min.js">
-    <link rel="preload" as="script" href="/assets/js/ScrollTrigger.min.js">
-    <link rel="preload" as="script" href="/assets/js/home.js">
+    <!-- Use prefetch instead of preload for scripts executed after onload to avoid warnings -->
+    <link rel="prefetch" as="script" href="/assets/js/gsap.min.js">
+    <link rel="prefetch" as="script" href="/assets/js/ScrollTrigger.min.js">
+    <link rel="prefetch" as="script" href="/assets/js/home.js">
   </head>
   <body>
     <div id="root"></div>
