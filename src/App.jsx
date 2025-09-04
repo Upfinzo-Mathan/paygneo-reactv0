@@ -28,124 +28,73 @@ function App() {
     // Load external scripts
     const loadScript = (src) => {
       return new Promise((resolve, reject) => {
-        // Avoid duplicate script injections (e.g., due to React StrictMode double-invocation)
-        const existing = document.querySelector(`script[src="${src}"]`);
-        if (existing) {
-          resolve();
-          return;
-        }
         const script = document.createElement('script');
         script.src = src;
-        script.async = true;
         script.onload = resolve;
         script.onerror = reject;
         document.head.appendChild(script);
       });
     };
 
-    const safeRemovePreloader = () => {
-      if (window.__preloaderRemoved) return;
-      const preloader = document.querySelector('.preloader');
-      if (preloader) {
-        try {
-          preloader.classList.remove('show');
-          if (preloader.parentElement && document.contains(preloader)) {
-            preloader.parentElement.removeChild(preloader);
-          } else if (preloader.remove) {
-            preloader.remove();
-          }
-        } catch (e) {
-          // ignore if already removed elsewhere
-        }
-      }
-      window.__preloaderRemoved = true;
-    };
-
     const loadScripts = async () => {
       try {
-        // Run only once per page load
-        if (window.__externalScriptsLoaded) return;
         // Load jQuery first
         await loadScript('/assets/js/jquery.js');
-
-        // Load vendor scripts that don't crash on missing elements
+        
+        // Load other scripts
         await Promise.all([
           loadScript('/assets/js/bootstrap.bundle.min.js'),
           loadScript('/assets/js/tilt.min.js'),
           loadScript('/assets/js/spotlight_effect.js'),
+          loadScript('/assets/js/gsap.min.js'),
+          loadScript('/assets/js/ScrollTrigger.min.js'),
+          loadScript('/assets/js/ScrollToPlugin.min.js'),
+          loadScript('/assets/js/motionpath.min.js'),
           loadScript('/assets/js/lottie.min.js'),
           loadScript('/assets/js/owl.carousel.min.js'),
-          // Use Rive canvas build to avoid WebGL shader warnings
-          loadScript('https://unpkg.com/@rive-app/canvas@latest')
+          loadScript('/assets/js/home.js'),
+          loadScript('https://unpkg.com/@rive-app/webgl2@latest')
         ]);
 
-        // Ensure full window load to guarantee all assets, fonts and React DOM are ready
-        await new Promise((resolve) => {
-          if (document.readyState === 'complete') {
-            resolve();
-          } else {
-            window.addEventListener('load', resolve, { once: true });
-          }
-        });
-
-        // Small extra paint delay
-        await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
-
-        // SAFE LOADER: hide preloader if present, ensure page is visible
-        safeRemovePreloader();
-        const page = document.querySelector('.page');
-        if (page) {
-          page.style.visibility = 'visible';
-          page.style.opacity = '1';
-        }
-
-        // Initialize Rive animations safely (only if canvases exist)
+        // Initialize Rive animations
         if (window.rive) {
-          const payrollCanvas = document.getElementById("payroll");
-          const payoutCanvas = document.getElementById("payout");
-          const expCanvas = document.getElementById("exp-anim");
+          const payroll_riv = new window.rive.Rive({
+            src: "/assets/riv/payroll.riv",
+            canvas: document.getElementById("payroll"),
+            autoplay: true,
+            artboard: "Payroll opt 1",
+            stateMachines: "Payroll",
+            useOffscreenRenderer: true,
+            onLoad: () => {
+              payroll_riv.resizeDrawingSurfaceToCanvas();
+            },
+          });
 
-          if (payrollCanvas) {
-            const payroll_riv = new window.rive.Rive({
-              src: "/assets/riv/payroll.riv",
-              canvas: payrollCanvas,
-              autoplay: true,
-              artboard: "Payroll opt 1",
-              stateMachines: "Payroll",
-              useOffscreenRenderer: true,
-              onLoad: () => payroll_riv.resizeDrawingSurfaceToCanvas(),
-            });
-          }
+          const payout_riv = new window.rive.Rive({
+            src: "/assets/riv/payout.riv",
+            canvas: document.getElementById("payout"),
+            autoplay: true,
+            artboard: "Payout opt 1",
+            stateMachines: "Payout",
+            useOffscreenRenderer: true,
+            onLoad: () => {
+              payout_riv.resizeDrawingSurfaceToCanvas();
+            },
+          });
 
-          if (payoutCanvas) {
-            const payout_riv = new window.rive.Rive({
-              src: "/assets/riv/payout.riv",
-              canvas: payoutCanvas,
-              autoplay: true,
-              artboard: "Payout opt 1",
-              stateMachines: "Payout",
-              useOffscreenRenderer: true,
-              onLoad: () => payout_riv.resizeDrawingSurfaceToCanvas(),
-            });
-          }
-
-          if (expCanvas) {
-            const exp_img = new window.rive.Rive({
-              src: "/assets/riv/Four.riv",
-              canvas: expCanvas,
-              autoplay: true,
-              stateMachines: "Four",
-              useOffscreenRenderer: true,
-              onLoad: () => exp_img.resizeDrawingSurfaceToCanvas(),
-            });
-          }
+          const exp_img = new window.rive.Rive({
+            src: "/assets/riv/Four.riv",
+            canvas: document.getElementById("exp-anim"),
+            autoplay: true,
+            stateMachines: "Four",
+            useOffscreenRenderer: true,
+            onLoad: () => {
+              exp_img.resizeDrawingSurfaceToCanvas();
+            },
+          });
         }
-
-        window.__externalScriptsLoaded = true;
       } catch (error) {
         console.error('Error loading scripts:', error);
-        // Emergency fallback: remove preloader if it blocks the UI
-        safeRemovePreloader();
       }
     };
 
@@ -155,7 +104,7 @@ function App() {
   return (
     <>
       <Preloader />
-      <div className="page" style={{ visibility: 'hidden', opacity: 0 }}>
+      <div className="page">
         <main className="smooth-scroll">
           <CursorEffect />
           <Navigation />

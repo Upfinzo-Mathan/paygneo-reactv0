@@ -1,37 +1,24 @@
-# Dependencies
-node_modules/
-
-# Production build
-/dist/
-
 # Logs
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
 
 # Editor directories and files
-.vscode/
-.idea/
-*.sw*
+.vscode/*
+!.vscode/extensions.json
+.idea
 .DS_Store
-Thumbs.db
-
-# Env files
-.env
-.env.*
-!.env.example
-
-# Vite cache
-/.vite/
-.vite/
-
-# Coverage
-coverage/
-
-# Local Netlify build cache
-.netlify/
-
-# Optional OS files
-*.tmp
-*.temp
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
