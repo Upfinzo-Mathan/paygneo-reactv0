@@ -94,8 +94,8 @@ function App() {
           loadScript(withBase('assets/js/owl.carousel.min.js')),
         ]);
 
-        // Load Rive runtime
-        await loadScript('https://unpkg.com/@rive-app/webgl2@latest');
+        // Load Rive runtime (Canvas build to reduce GPU shader warnings)
+        await loadScript('https://unpkg.com/@rive-app/canvas@latest');
 
         // Only initialize Rive if target canvases exist
         if (window.rive) {
