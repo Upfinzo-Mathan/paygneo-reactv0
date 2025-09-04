@@ -43,6 +43,24 @@ function App() {
       });
     };
 
+    const safeRemovePreloader = () => {
+      if (window.__preloaderRemoved) return;
+      const preloader = document.querySelector('.preloader');
+      if (preloader) {
+        try {
+          preloader.classList.remove('show');
+          if (preloader.parentElement && document.contains(preloader)) {
+            preloader.parentElement.removeChild(preloader);
+          } else if (preloader.remove) {
+            preloader.remove();
+          }
+        } catch (e) {
+          // ignore if already removed elsewhere
+        }
+      }
+      window.__preloaderRemoved = true;
+    };
+
     const loadScripts = async () => {
       try {
         // Run only once per page load
@@ -74,12 +92,7 @@ function App() {
         await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
 
         // SAFE LOADER: hide preloader if present, ensure page is visible
-        const preloader = document.querySelector('.preloader');
-        if (preloader) {
-          preloader.classList.remove('show');
-          // remove from DOM shortly after to avoid blocking interactions
-          setTimeout(() => preloader.parentNode?.removeChild(preloader), 300);
-        }
+        safeRemovePreloader();
         const page = document.querySelector('.page');
         if (page) {
           page.style.visibility = 'visible';
@@ -132,8 +145,7 @@ function App() {
       } catch (error) {
         console.error('Error loading scripts:', error);
         // Emergency fallback: remove preloader if it blocks the UI
-        const preloader = document.querySelector('.preloader');
-        if (preloader) preloader.parentNode?.removeChild(preloader);
+        safeRemovePreloader();
       }
     };
 
